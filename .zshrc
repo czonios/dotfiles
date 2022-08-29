@@ -2,13 +2,6 @@ if [ -f ~/.profile ]; then
     . ~/.profile
 fi
 
-# some more ls aliases
-alias ls="exa"
-alias lt="exa -T"
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -151,3 +144,11 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# some more ls aliases
+alias ls="exa"
+alias lt="exa -T"
+alias lh="exa -lrh"
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
