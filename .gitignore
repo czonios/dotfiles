@@ -6,8 +6,6 @@
 !README.md
 !.vim
 !.tmux.conf
-!.vim/*
-!.vim/**/*
 !.bashrc
 !.bash_profile
 !.zshrc
