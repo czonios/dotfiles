@@ -1,4 +1,4 @@
-# Christos' dotfiles
+# Dotfiles and new system setup
 
 ### Setup
   * open a terminal in your home folder (~)
