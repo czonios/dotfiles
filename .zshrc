@@ -145,10 +145,13 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# exa
+if [ -x "$(command -v exa)" ]; then
+    alias ls="exa"
+    alias la="exa --long --all --group"
+    alias lt="exa -T"
+fi
 # some more ls aliases
-alias ls="exa"
-alias lt="exa -T"
-alias lh="exa -lrh"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
