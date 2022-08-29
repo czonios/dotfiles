@@ -1,0 +1,154 @@
+" All system-wide defaults are set in $VIMRUNTIME/archlinux.vim (usually just
+" /usr/share/vim/vimfiles/archlinux.vim) and sourced by the call to :runtime
+" you can find below.  If you wish to change any of those settings, you should
+" do it in this file (/etc/vimrc), since archlinux.vim will be overwritten
+" everytime an upgrade of the vim packages is performed.  It is recommended to
+" make changes after sourcing archlinux.vim since it alters the value of the
+" 'compatible' option.
+
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages.
+runtime! archlinux.vim
+
+" If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'
+" Or better yet, read /usr/share/vim/vim80/vimrc_example.vim or the vim manual
+" and configure vim to your own liking!
+
+" do not load defaults if ~/.vimrc is missing
+"let skip_defaults_vim=1
+set paste
+set nocp
+let mapleader=","       " leader is comma
+
+" Optional plugins
+packadd vim-sensible
+packadd indentLine
+" IndentLine {{
+let g:indentLine_char = '|' "''
+let g:indentLine_first_char = '|' "''
+let g:indentLine_showFirstIndentLevel = 1
+"let g:indentLine_setColors = 0
+" }}
+
+packadd vim-angry-reviewer
+let g:AngryReviewerEnglish = 'american'
+nnoremap <leader>ar :AngryReviewer<cr>
+
+packadd fzf
+packadd fzf.vim
+"nnoremap fzf :Files %:p:h<CR>
+nnoremap fzf :Files<CR>
+
+"start nerdtree if no file specified
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <C-n> :NERDTreeToggle<CR> " toggle nerdtree with Ctrl+n
+
+" --- below needed for ayu
+set termguicolors     " enable true colors support
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+"colorscheme ayu
+" --- above needed for ayu
+"colorscheme default "works with wal
+"colorscheme gruvbox
+"colorscheme codedark
+colorscheme jellybeans
+let g:jellybeans_overrides = {
+\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+\}
+if has('termguicolors') && &termguicolors
+    let g:jellybeans_overrides['background']['guibg'] = 'none'
+endif
+"set background=dark
+"colorscheme solarized "also good
+hi Normal guibg=NONE ctermbg=NONE
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
+set number
+set cursorline
+"set cursorcolumn
+set showcmd
+set textwidth=80
+set formatoptions+=t
+syntax enable
+
+set smartcase
+set showmatch
+"set list
+"set lcs=space:·
+map <leader>l :set list!<CR> "Toggle tabs and EOL
+
+"spaces and tabs
+set smarttab
+set tabstop=4 "No of spaces per TAB
+set softtabstop=4 "No of spaces in tab when editing
+set expandtab "tabs are spaces
+set shiftwidth=4
+
+"auto indent
+set autoindent
+set smartindent
+set indentkeys+=O,o
+set clipboard=unnamed
+
+" Map Ctrl+e to end of line in insert mode
+inoremap <C-e> <C-o>$
+" Map Ctrl+a to beginning of line in insert mode
+inoremap <C-a> <C-o>0
+
+filetype plugin indent on
+set wildmenu
+set lazyredraw
+set showmatch
+
+"searching
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
+set ignorecase			" ignore case in search
+nnoremap <leader><space> :nohlsearch<CR> " reset highlights with ,<space>
+"unsets "last search pattern" register by hitting return
+nnoremap <CR> :noh<CR><CR>
+
+"Compile
+nmap <leader>cc :!./compile.sh<cr>
+
+"LaTeX open pdf
+nmap <leader>cv :!xdg-open %:r.pdf > /dev/null 2>&1 &<cr><cr>
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+
+"Natural split opening
+set splitbelow
+set splitright
+
+" Split Terminals
+command! -nargs=* T split | terminal <args>
+command! -nargs=* VT vsplit | terminal <args>
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
+map <leader>h :noh<cr>
+" jk is escape
+inoremap jk <esc>
+
+"backup
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
+
+" below line is for terminal transparency
+"hi NonText ctermbg=none
+"hi Normal guibg=NONE ctermbg=NONE

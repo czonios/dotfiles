@@ -1,0 +1,15 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!README.md
+!.vim
+!.tmux.conf
+!.vim/*
+!.vim/**/*
+!.bashrc
+!.bash_profile
+!.zshrc
+!.alacritty.yml
+!.shortcuts.md
