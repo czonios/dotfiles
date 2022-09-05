@@ -155,3 +155,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+# bat
+if [ -x "$(command -v bat)" ]; then
+    alias cat="bat"
+fi
