@@ -1,26 +1,42 @@
+#!/bin/bash
+
 # install apt packages
-sudo apt install tmux zsh neovim exa htop ncdu python3;
+sudo apt update;
+sudo apt install tmux zsh exa htop ncdu python3 ripgrep fd-find gcc snapd;
+
+# install neovim
+sudo snap install --edge nvim --classic
+# install lazyvim
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+
 # install Rust lang
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
 source "$HOME/.cargo/env";
+
 # install Rust packages
-cargo install ripgrep bar bottom alacritty;
+cargo install bat bottom;
+
 # install Fira Code nerd font
 mkdir -p ~/.local/share/fonts;
-cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFontMono-Regular.ttf;
-cd ~/dotfiles;
-# install oh-my-zsh
+cd ~/.local/share/fonts;
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.0/FiraCode.zip;
+unzip FiraCode.zip;
+rm FiraCode.zip;
+
+# install oh-my-zsh and p10k
+zsh;
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
-# install p10k
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k;
-
-# Move dotfiles into home dir
-cd dotfiles;
-find . -mindepth 1 -maxdepth 1 -exec mv -t .. -- {} +;
-cd ..; rm -r dotfiles;
-
-source ~/.zshrc;
-
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting;
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
-p10k configure
+
+# Move dotfiles into home dir
+cd ~/dotfiles;
+find . -mindepth 1 -maxdepth 1 -exec mv -t .. -- {} +;
+cd ..; 
+rm -r dotfiles;
+rm -rf .git;
+
+p10k configure;
+nvim;

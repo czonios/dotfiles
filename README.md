@@ -3,26 +3,51 @@
 ## Setup
   * open a terminal in your home folder (~)
   * clone this repo `git clone git@github.com:czonios/dotfiles.git`
-  * Install packages `sudo apt install alacritty tmux zsh neovim exa htop ncdu node python3`
-  * Install [Rustup and cargo](https://www.rust-lang.org/tools/install)
-  * Install crates `cargo install ripgrep bat bottom #(btm)`
-  * Install [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts#option-6-ad-hoc-curl-download)
-  * Move all files from ~/dotfiles into ~:
-    * `cd dotfiles`
-    * `find . -mindepth 1 -maxdepth 1 -exec mv -t .. -- {} +`
-    * `cd ..; rm -r dotfiles`
-  * Install [oh-my-zsh and p10k](https://dev.to/abdfnx/oh-my-zsh-powerlevel10k-cool-terminal-1no0)
-  * Install [astronvim](https://astronvim.github.io)
-  * maybe install [starship](https://starship.rs/guide/#🚀-installation) if ohmyzsh and p10k are not for you 
+  * run the `setup.sh` script from inside the `dotfiles` directory
 
 ### Copyable script:
 
 ```sh
-cd ~
-git clone git@github.com:czonios/dotfiles.git
-cd dotfiles
-find . -mindepth 1 -maxdepth 1 -exec mv -t .. -- {} +
-cd ..; rm -r dotfiles
-sudo apt install alacritty tmux zsh neovim exa htop ncdu node python3
-cargo install ripgrep bottom #(btm)
+#!/bin/bash
+
+# install apt packages
+sudo apt update;
+sudo apt install tmux zsh exa htop ncdu python3 ripgrep fd-find gcc snapd;
+
+# install neovim
+sudo snap install --edge nvim --classic
+# install lazyvim
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+
+# install Rust lang
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
+source "$HOME/.cargo/env";
+
+# install Rust packages
+cargo install bat bottom;
+
+# install Fira Code nerd font
+mkdir -p ~/.local/share/fonts;
+cd ~/.local/share/fonts;
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.0/FiraCode.zip;
+unzip FiraCode.zip;
+rm FiraCode.zip;
+
+# install oh-my-zsh and p10k
+zsh;
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k;
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting;
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
+
+# Move dotfiles into home dir
+cd ~/dotfiles;
+find . -mindepth 1 -maxdepth 1 -exec mv -t .. -- {} +;
+cd ..; 
+rm -r dotfiles;
+rm -rf .git;
+
+p10k configure;
+nvim;
 ```
