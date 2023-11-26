@@ -15,10 +15,10 @@ sudo apt update;
 sudo apt install tmux zsh exa htop ncdu python3 ripgrep fd-find gcc snapd;
 
 # install neovim
-sudo snap install --edge nvim --classic
+sudo snap install --edge nvim --classic;
 # install lazyvim
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf ~/.config/nvim/.git
+git clone https://github.com/LazyVim/starter ~/.config/nvim;
+rm -rf ~/.config/nvim/.git;
 
 # install Rust lang
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
