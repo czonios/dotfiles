@@ -23,6 +23,7 @@ cd ~/.local/share/fonts;
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.0/FiraCode.zip;
 unzip FiraCode.zip;
 rm FiraCode.zip;
+cd ~/dotfiles;
 
 # install oh-my-zsh and p10k
 zsh;
