@@ -5,6 +5,7 @@ sudo apt update;
 sudo apt install tmux zsh exa bat htop ncdu python3 ripgrep fd-find gcc snapd;
 
 # install neovim
+sudo service snapd start;
 sudo snap install --edge nvim --classic;
 # install lazyvim
 git clone https://github.com/LazyVim/starter ~/.config/nvim;
