@@ -2,7 +2,7 @@
 
 # install apt packages
 sudo apt update;
-sudo apt install tmux zsh exa htop ncdu python3 ripgrep fd-find gcc snapd;
+sudo apt install tmux zsh exa bat htop ncdu python3 ripgrep fd-find gcc snapd;
 
 # install neovim
 sudo snap install --edge nvim --classic;
