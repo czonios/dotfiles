@@ -15,7 +15,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
 source "$HOME/.cargo/env";
 
 # install Rust packages
-cargo install bat bottom;
+cargo install batcat bottom;
 
 # install Fira Code nerd font
 mkdir -p ~/.local/share/fonts;
